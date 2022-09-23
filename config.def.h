@@ -1,26 +1,29 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 16;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int user_bh            = 10;        /* 2 is the default spacing around the bar's font */
-static const char *fonts[]          = { "scientifica:size=14:antialias=false" };
+static const int user_bh            = 16;        /* 2 is the default spacing around the bar's font */
+static const char *fonts[]          = { 
+	"Terminus:antialias=false",
+	"Symbols Nerd Font:size=12:style=1000-em:antialias-true"
+};
+static const char col_fg[]          = "#839496";
 static const char col_brblack[]     = "#002b36";
-static const char col_black[]       = "#073642";
-static const char col_brblue[]      = "#839496";
-static const char col_brcyan[]      = "#93a1a1";
+static const char col_bg[]          = "#073642";
+static const char col_cyan[]        = "#93a1a1";
 
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_brblue, col_brblack, col_brblue },
-	[SchemeSel]  = { col_brcyan, col_black,  col_brcyan  },
-	[SchemeStatus]  = { col_brcyan, col_black,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
-	[SchemeTagsSel]  = { col_brblue, col_brblack,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
-	[SchemeTagsNorm]  = { col_brcyan, col_black,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
-	[SchemeInfoSel]  = { col_brblue, col_brblack,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
-	[SchemeInfoNorm]  = { col_brblue, col_brblack,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
+	[SchemeNorm] = { col_brblack, col_brblack, col_fg },
+	[SchemeSel]  = { col_fg, col_bg, col_cyan, },
+	[SchemeStatus]  = { col_cyan, col_cyan,  "#000000"  }, // Statusbar right {text,background,not used but cannot be empty}
+	[SchemeTagsSel]  = { col_fg, col_brblack,  "#000000"  }, // Tagbar left selected {text,background,not used but cannot be empty}
+	[SchemeTagsNorm]  = { col_cyan, col_bg,  "#000000"  }, // Tagbar left unselected {text,background,not used but cannot be empty}
+	[SchemeInfoSel]  = { col_fg, col_brblack,  "#000000"  }, // infobar middle  selected {text,background,not used but cannot be empty}
+	[SchemeInfoNorm]  = { col_fg, col_brblack,  "#000000"  }, // infobar middle  unselected {text,background,not used but cannot be empty}
 };
 
 /* tagging */
@@ -65,6 +68,7 @@ static const char *dmenucmd[] 	= { "dmenu_run", NULL };
 static const char *termcmd[]  	= { "st", NULL };
 static const char *webcmd[]   	= { "tabbed", "-c", "surf", "-e", NULL };
 static const char *emacscmd[] 	= { "emacs", NULL };
+static const char *musiccmd[]    = { "st", "-e", "ncmpcpp", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -72,6 +76,7 @@ static const Key keys[] = {
 	{ MODKEY,	                XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,			XK_s,	   spawn,	   {.v = webcmd } },
 	{ MODKEY|ShiftMask,		XK_e,	   spawn,	   {.v = emacscmd } },
+	{ MODKEY,                       XK_a,      spawn,          {.v = musiccmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
